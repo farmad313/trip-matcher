@@ -8,6 +8,7 @@ class TripMatcherApplicationTests {
 
 	@Test
 	void contextLoads() {
+		// Intentionally empty
 	}
 
 }

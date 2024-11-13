@@ -1,0 +1,9 @@
+spring:
+    application:
+        name: trip-matcher
+
+csv:
+    inputFile:
+        path: src/main/resources/data/taps.csv
+    outputFile:
+        path: src/main/resources/data/trips.csv
