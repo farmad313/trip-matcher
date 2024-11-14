@@ -4,7 +4,6 @@ package dev.amir.trip_matcher.reader.service;
 import dev.amir.trip_matcher.reader.model.TapModel;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -16,7 +15,6 @@ class CsvReadingServiceTest {
 
     private static final String TAPS_CSV_FILE_PATH = "src/test/resources/csvs/taps1.csv";
 
-    @InjectMocks
     private CsvReadingService csvReadingService;
 
     @BeforeEach
