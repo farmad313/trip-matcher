@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class CsvReadingServiceTest {
 
-    private static final String TAPS_CSV_FILE_PATH = "src/test/resources/csvs/taps1.csv";
+    private static final String TAPS_CSV_FILE_PATH = "src/test/resources/csvs/taps-readerTest.csv";
 
     private CsvReadingService csvReadingService;
 

@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 class CsvWritingServiceTest {
 
-    private static final String TAPS_CSV_FILE_PATH = "src/test/resources/csvs/trips1.csv";
+    private static final String TAPS_CSV_FILE_PATH = "src/test/resources/csvs/trips-writerTest.csv";
 
     private CsvWritingService csvWritingService;
 

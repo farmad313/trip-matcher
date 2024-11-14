@@ -27,12 +27,12 @@ public class CsvWritingService {
             // Write data
             for (TripModel trip : trips) {
                 writer.writeNext(new String[]{
-                        trip.getStarted().toString(),
-                        trip.getFinished().toString(),
+                        trip.getStarted() != null ? trip.getStarted().toString() : "UNKNOWN",
+                        trip.getFinished() != null ? trip.getFinished().toString() : "UNKNOWN",
                         String.valueOf(trip.getDurationSecs()),
                         trip.getFromStopId(),
                         trip.getToStopId(),
-                        trip.getChargeAmount(),
+                        (trip.getChargeAmount() != null) ? "$"+trip.getChargeAmount() : "NOT_FOUND",
                         trip.getCompanyId(),
                         trip.getBusId(),
                         trip.getPan(),
@@ -41,6 +41,8 @@ public class CsvWritingService {
             }
         }
     }
+
+
 }
 
 

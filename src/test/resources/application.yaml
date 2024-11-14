@@ -4,6 +4,6 @@ spring:
 
 csv:
     inputFile:
-        path: src/main/resources/data/taps1.csv
+        path: src/main/resources/data/taps-readerTest.csv
     outputFile:
         path: src/main/resources/data/trips.csv
