@@ -1,6 +1,26 @@
 # trip-matcher
 Matching tap-on and tap-off events to create trips
 
+Before boarding a bus at a bus stop, passengers tap their credit card (identified by the PAN, or Primary Account
+Number) on a card reader. This is called a tap on. When the passenger gets off the bus, they tap their card
+again. This is called a tap off. The amount to charge the passenger for the trip is determined by the stops where
+the passenger tapped on and tapped off. The amount the passenger will be charged for the trip will be
+determined by the fare rules of the transit company. The fare rules are based on the stops where the passenger tapped on and tapped off. 
+The fare rules are stored in a simple data structure that can be updated by the transit company.
+Then, the fare for the trip is calculated based on the fare rules and the stops where the passenger tapped on and tapped off.
+
+---
+
+#### ✔️ Application components
+The trip-matcher application is designed to be scalable and fault-tolerant. 
+Each components are designed to be stateless and can be easily decomposed into separate microservice and scaled horizontally to handle a large volume of price data.
+The application components are:
+1. datastore (simple implementation of a database)
+2. reader (just csv reader)
+3. processor (main component responsible for matching tap-on and tap-off events to create trips)
+4. writer (just csv writer)
+5. rule engine (simple implementation of a rule engine)
+
 
 #### ✔️ Prerequisites
 - Java 21
@@ -72,3 +92,9 @@ At production level, as the company's rule might be complex and changeable, usin
 7. Calculate trip duration.
 8. Store trip data in a List.
 9. Write trip data to csv file.
+
+
+
+---
+
+Developed by [Amirhossein Farmad](https://www.linkedin.com/in/amirhossein-farmad/)

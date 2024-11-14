@@ -1,6 +1,7 @@
 package dev.amir.trip_matcher.writer.service;
 
 import com.opencsv.CSVWriter;
+import com.opencsv.CSVWriterBuilder;
 import dev.amir.trip_matcher.writer.model.TripModel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,11 +24,12 @@ public class CsvWritingService {
         this.filePath = filePath;
     }
 
-
     public void writeTripsToCsv(List<TripModel> trips) throws IOException {
         log.info("Writing trips to CSV file: {}", filePath);
 
-        try (CSVWriter writer = new CSVWriter(new FileWriter(filePath))) {
+        try (CSVWriter writer = (CSVWriter) new CSVWriterBuilder(new FileWriter(filePath))
+                .withQuoteChar(CSVWriter.NO_QUOTE_CHARACTER)
+                .build()) {
             // Write header
             writer.writeNext(new String[]{"Started", "Finished", "DurationSecs", "FromStopId", "ToStopId", "ChargeAmount", "CompanyId", "BusID", "PAN", "Status"});
 
@@ -39,7 +41,7 @@ public class CsvWritingService {
                         String.valueOf(trip.getDurationSecs()),
                         trip.getFromStopId(),
                         trip.getToStopId(),
-                        (trip.getChargeAmount() != null) ? "$"+trip.getChargeAmount() : "NOT_FOUND",
+                        (trip.getChargeAmount() != null) ? "$" + trip.getChargeAmount() : "NOT_FOUND",
                         trip.getCompanyId(),
                         trip.getBusId(),
                         trip.getPan(),
@@ -48,8 +50,4 @@ public class CsvWritingService {
             }
         }
     }
-
-
 }
-
-

@@ -35,6 +35,5 @@ public class TapModel {
 
     @CsvCustomBindByPosition(position = 6, converter = LeadingWhiteSpaceConvertor.class)
     private String pan;
-
 }
 

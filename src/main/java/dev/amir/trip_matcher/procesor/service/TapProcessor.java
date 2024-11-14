@@ -2,6 +2,7 @@ package dev.amir.trip_matcher.procesor.service;
 
 import dev.amir.trip_matcher.datastore.TripFareManager;
 import dev.amir.trip_matcher.reader.model.TapModel;
+import dev.amir.trip_matcher.ruleengine.service.BackToBackTapRuleEngine;
 import dev.amir.trip_matcher.writer.model.TripModel;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

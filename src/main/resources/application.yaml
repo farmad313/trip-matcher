@@ -1,6 +1,8 @@
 spring:
     application:
         name: trip-matcher
+    main:
+        banner-mode: 'off'
 
     threads:
         virtual:
