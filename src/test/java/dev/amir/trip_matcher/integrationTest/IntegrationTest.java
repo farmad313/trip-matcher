@@ -1,6 +1,5 @@
 package dev.amir.trip_matcher.integrationTest;
 
-import dev.amir.trip_matcher.datastore.DefaultTripFareLoader;
 import dev.amir.trip_matcher.datastore.TripFareManager;
 import dev.amir.trip_matcher.procesor.service.TapProcessor;
 import dev.amir.trip_matcher.reader.model.TapModel;
@@ -15,7 +14,6 @@ import java.util.List;
 
 import static dev.amir.trip_matcher.datastore.DefaultTripFareLoader.loadDatastore;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.springframework.test.util.AssertionErrors.assertNull;
 
 
 /**
@@ -25,8 +23,8 @@ import static org.springframework.test.util.AssertionErrors.assertNull;
  */
 class IntegrationTest {
 
-    private static final String INPUT_TAPS_CSV_FILE_PATH = "src/test/resources/csvs/taps-integrationTest.csv";
-    private static final String OUTOUT_TRIPS_CSV_FILE_PATH = "src/test/resources/csvs/trips-integrationTest.csv";
+    private static final String INPUT_TAPS_CSV_FILE_PATH = "src/test/resources/data/taps-integrationTest.csv";
+    private static final String OUTOUT_TRIPS_CSV_FILE_PATH = "src/test/resources/data/trips-integrationTest.csv";
 
     private CsvReadingService csvReadingService;
     private TripFareManager tripFareManager;
@@ -44,15 +42,11 @@ class IntegrationTest {
 
 
     @Test
-    void tripMaker_ShouldReturnListOfTrips() throws IOException {
+    void tripMaker_ShouldSaveListOfTrips() throws IOException {
         TapProcessor tapProcessor = new TapProcessor(tripFareManager);
         List<TapModel> taps = csvReadingService.readTapsCsv();
         List<TripModel> trips = tapProcessor.tripMaker(taps);
 
         assertDoesNotThrow(() -> csvWritingService.writeTripsToCsv(trips));
     }
-
-
-
-
 }

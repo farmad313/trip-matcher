@@ -1,9 +1,12 @@
 package dev.amir.trip_matcher.datastore;
 
+import org.springframework.stereotype.Service;
+
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
+@Service
 public class TripFareManager {
     private Map<Route, BigDecimal> priceRules = new HashMap<>();
 

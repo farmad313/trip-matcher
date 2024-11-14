@@ -17,7 +17,6 @@ class TripFareManagerTest {
     @BeforeEach
     public void setUp() {
         tripFareManager = new TripFareManager();
-        defaultTripFareLoader = new DefaultTripFareLoader();
     }
 
     @Test

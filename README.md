@@ -15,7 +15,19 @@ git clone  https://github.com/farmad313/trip-matcher.git
 ```shell
 mvnw clean install
 ```
-
+- Set input/output csv file path in application.yml file
+```shell
+csv.input-file.path: src/main/resources/data/taps.csv
+csv.output-file.path: src/main/resources/data/trips.csv
+```
+- Run the application
+```shell
+java -jar target/trip-matcher-0.0.1-SNAPSHOT.jar
+```
+- Or run following integration test
+```shell
+mvn -Dtest=dev/amir/trip_matcher/integrationTest/IntegrationTest.java test
+```
 
 
 ---
@@ -45,6 +57,10 @@ For naming the modules in this hypothetical system, Spring Batch naming and term
 #### ✔️ What is the best Data type for trip fare?
 1. BigDecimal: Use BigDecimal for prices and volumes in financial applications to ensure precise and accurate calculations.
 2. Double: double might be faster and use less memory, but it is prone to rounding errors and not suitable for financial precision.
+
+#### ✔️ What is the best way to store and apply back to back rules and state transition?
+At production level, as the company's rule might be complex and changeable, using frameworks such as Spring State Machine or Camunda BPMN engine is recommended. 
+
 
 #### ✔️ Highlevel design of tap matcher processor?
 1. Read tap-on and tap-off events from csv file.

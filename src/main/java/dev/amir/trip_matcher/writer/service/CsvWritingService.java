@@ -2,6 +2,8 @@ package dev.amir.trip_matcher.writer.service;
 
 import com.opencsv.CSVWriter;
 import dev.amir.trip_matcher.writer.model.TripModel;
+import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -10,9 +12,12 @@ import java.io.IOException;
 import java.util.List;
 
 @Service
+@NoArgsConstructor
+@Slf4j
 public class CsvWritingService {
-    @Value("${csv.outputFile.path}")
-    private final String filePath;
+
+    @Value("${csv.output-file.path}")
+    private String filePath ;
 
     public CsvWritingService(String filePath) {
         this.filePath = filePath;
@@ -20,6 +25,8 @@ public class CsvWritingService {
 
 
     public void writeTripsToCsv(List<TripModel> trips) throws IOException {
+        log.info("Writing trips to CSV file: {}", filePath);
+
         try (CSVWriter writer = new CSVWriter(new FileWriter(filePath))) {
             // Write header
             writer.writeNext(new String[]{"Started", "Finished", "DurationSecs", "FromStopId", "ToStopId", "ChargeAmount", "CompanyId", "BusID", "PAN", "Status"});
@@ -36,7 +43,7 @@ public class CsvWritingService {
                         trip.getCompanyId(),
                         trip.getBusId(),
                         trip.getPan(),
-                        trip.getStatus()
+                        String.valueOf(trip.getStatus())
                 });
             }
         }

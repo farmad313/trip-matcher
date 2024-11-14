@@ -3,6 +3,7 @@ package dev.amir.trip_matcher.procesor.service;
 import dev.amir.trip_matcher.datastore.TripFareManager;
 import dev.amir.trip_matcher.reader.model.TapModel;
 import dev.amir.trip_matcher.writer.model.TripModel;
+import dev.amir.trip_matcher.writer.model.TripStatus;
 import jdk.jfr.Description;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -24,7 +25,6 @@ class TapProcessorTest {
     void setUp() {
         tripFareManager = new TripFareManager();
         tapProcessor = new TapProcessor(tripFareManager);
-
     }
 
 
@@ -54,7 +54,7 @@ class TapProcessorTest {
                 .companyId("Company1")
                 .busId("Bus1")
                 .pan("PAN1")
-                .status("CANCELLED")
+                .status(TripStatus.valueOf("CANCELLED"))
                 .build());
 
         //then
@@ -87,7 +87,7 @@ class TapProcessorTest {
                 .companyId("Company1")
                 .busId("Bus1")
                 .pan("PAN1")
-                .status("INCOMPLETE")
+                .status(TripStatus.valueOf("INCOMPLETE"))
                 .build());
 
         //then
@@ -123,7 +123,7 @@ class TapProcessorTest {
                 .companyId("Company1")
                 .busId("Bus1")
                 .pan("PAN1")
-                .status("INCOMPLETE")
+                .status(TripStatus.valueOf("INCOMPLETE"))
                 .build());
 
         // Second incomplete trip by starting at Stop2 and not finishing and closing the process time
@@ -137,7 +137,7 @@ class TapProcessorTest {
                 .companyId("Company1")
                 .busId("Bus1")
                 .pan("PAN1")
-                .status("INCOMPLETE")
+                .status(TripStatus.valueOf("INCOMPLETE"))
                 .build());
 
         //then
@@ -171,7 +171,7 @@ class TapProcessorTest {
                 .companyId("Company1")
                 .busId("Bus1")
                 .pan("PAN1")
-                .status("COMPLETED")
+                .status(TripStatus.valueOf("COMPLETED"))
                 .build());
 
         //then
@@ -209,7 +209,7 @@ class TapProcessorTest {
                 .companyId("Company1")
                 .busId("Bus1")
                 .pan("PAN2")
-                .status("COMPLETED")
+                .status(TripStatus.valueOf("COMPLETED"))
                 .build());
 
         expectedTrips.add(TripModel.builder()
@@ -222,18 +222,14 @@ class TapProcessorTest {
                 .companyId("Company1")
                 .busId("Bus1")
                 .pan("PAN1")
-                .status("COMPLETED")
+                .status(TripStatus.valueOf("COMPLETED"))
                 .build());
-
 
 
         //then
         List<TripModel> actualTrips = tapProcessor.tripMaker(taps);
         assertEquals(expectedTrips, actualTrips);
     }
-
-
-
 
 
     private void loadSampleTripFareIntoDatastore() {

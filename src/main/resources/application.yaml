@@ -2,8 +2,14 @@ spring:
     application:
         name: trip-matcher
 
+    threads:
+        virtual:
+            enabled=true:
+                max: 10
+                core: 5
+
 csv:
-    inputFile:
+    input-file:
         path: src/main/resources/data/taps.csv
-    outputFile:
+    output-file:
         path: src/main/resources/data/trips.csv
